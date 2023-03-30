@@ -1,10 +1,10 @@
 import { getAdverts, updateAdverts } from '@/services/storage';
 import type { IAdvert } from '@/types/avdert';
 import { advertListMock } from '@/api/mocks/advMock';
+import type { ISearch } from "@/types/search";
 
-export default {
-  // TODO: add filter
-  getAdverts(): Promise<IAdvert[]> {
+
+ function getAdvertsApi(): Promise<IAdvert[]> {
     const storageAdverts = getAdverts();
 
     if (storageAdverts.length > 0) {
@@ -14,18 +14,27 @@ export default {
     updateAdverts(advertListMock);
 
     return Promise.resolve(advertListMock);
-  },
-  addAdvert(advert: IAdvert): Promise<void> {
+  }
+ function addAdvertApi(advert: IAdvert): Promise<void> {
     const adverts = getAdverts();
 
     adverts.push(advert);
     updateAdverts(adverts);
-
     return Promise.resolve();
-  },
-  removeAdvert(advertId: number): Promise<void> {
-    // TODO
+  }
+  function removeAdvertApi(advertId: number): Promise<void> {
+    let storageAdverts = getAdverts();
 
+     storageAdverts = storageAdverts.filter((advertise: IAdvert) => advertise.id !== advertId)
+     updateAdverts(storageAdverts);
     return Promise.resolve();
-  },
-}
+  }
+
+  function searchAdvertApi(searchObj: ISearch): Promise<IAdvert[]> {
+      const storageAdverts = getAdverts();
+      return Promise.resolve(storageAdverts.filter((adv: IAdvert) => adv.city.name === searchObj.city.name && adv.serviceType === searchObj.serviceType))
+  }
+
+  export {
+    getAdvertsApi, addAdvertApi, removeAdvertApi, searchAdvertApi
+  }

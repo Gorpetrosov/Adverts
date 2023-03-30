@@ -5,7 +5,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "lib": [
+      "esnext",
+      "ES6",
+      "DOM"
+    ]
   },
 
   "references": [

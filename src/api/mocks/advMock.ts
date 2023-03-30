@@ -16,7 +16,7 @@ export const advertListMock: IAdvert[] = [
   },
   {
     id: 1,
-    user: usersMock[1],
+    user: usersMock[3],
     city: citiesMock[1],
     date: new Date(2023, 2, 19, 15, 44),
     serviceType: AdvertServiceType.cleaning,

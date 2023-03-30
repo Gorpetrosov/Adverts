@@ -12,5 +12,9 @@ export const usersMock: IUser[] = [
   {
     id: 2,
     name: 'John'
+  },
+  {
+    id: 3,
+    name: 'Gor'
   }
 ];
